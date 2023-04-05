@@ -7,6 +7,8 @@
         <div class="row justify-content-md-center">
             <div class="col-6">
                 <form action="{{ route('auth.registration') }}" method="POST">
+                    @include('components.alerts.error')
+
                     @csrf
                     @include('components.UI.input', ['field' => 'email', 'text' => 'Электронная почта', 'type' => 'email', 'placeholder' => 'name@example.com'])
                     @include('components.UI.input', ['field' => 'name', 'text' => 'Имя', 'type' => 'text', 'placeholder' => 'Имя'])

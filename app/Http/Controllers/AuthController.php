@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function registration(RegistrationRequest $request)
+    public function registration(RegistrationRequest $request): \Illuminate\Http\RedirectResponse
     {
         $validation = $request->validated();
         $validation['password'] = Hash::make($request->password);
+        $validation['role_id'] = 1;
 
         $user = User::query()->create($validation);
 
@@ -23,7 +24,7 @@ class AuthController extends Controller
         return $this->home();
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): \Illuminate\Http\RedirectResponse
     {
         if (!Auth::attempt($request->validated())) {
             return back()->withErrors(['invalidCredentials' => 'Не верный логин или пароль']);
@@ -32,14 +33,14 @@ class AuthController extends Controller
         return $this->home();
     }
 
-    public function logout()
+    public function logout(): \Illuminate\Http\RedirectResponse
     {
         Auth::logout();
 
         return redirect()->route('login');
     }
 
-    private function home()
+    private function home(): \Illuminate\Http\RedirectResponse
     {
         return redirect()->route('home');
     }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('theme');
             $table->text('text');
             $table->text('file_path');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
