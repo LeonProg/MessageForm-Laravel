@@ -20,9 +20,11 @@ class AdminIndexController extends Controller
 
     public function getMessage(Request $request)
     {
-        $messages = MessageResource::collection(Message::paginate(10));
+//        $messages = MessageResource::collection(Message::paginate(10));
+        //        Реафакторинг
+        $messages = Message::query()->with('user')->paginate(10);
 
-//        Реафакторинг
+
         if ($request->has('perPage')) {
             $messages = Message::query()->with('user')->paginate($request->perPage);
         }
@@ -30,11 +32,6 @@ class AdminIndexController extends Controller
         if ($request->has('perPage') && $request->has('sortBy')) {
             $messages = Message::query()->with('user')->orderBy('created_at', $request->sortBy)->paginate($request->perPage);
         }
-
-        return [
-            'data' => MessageResource::collection(Message::paginate(10)),
-            'paginate' => Message::paginate(10),
-        ];
 
         return response()->json($messages);
     }

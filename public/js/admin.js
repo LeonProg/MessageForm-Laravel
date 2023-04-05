@@ -41,9 +41,9 @@ async function render(param = '') {
     tbody.innerHTML = ``;
 
     let data = await getResponse(param);
+
     let dataMessage = data.data;
 
-    console.log(dataMessage)
 
     dataMessage.forEach((element) => {
         let tr = `
