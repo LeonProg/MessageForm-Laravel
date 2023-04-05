@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 
 class Message extends Model
 {
@@ -19,6 +20,11 @@ class Message extends Model
 
     public function user() : HasOne
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function getFileUrlAttribute()
+    {
+        return url(Storage::url($this->file_path));
     }
 }

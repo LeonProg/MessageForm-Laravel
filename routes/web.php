@@ -8,11 +8,7 @@ use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::controller(AdminIndexController::class)->group(function () {
-        Route::get('/admin', 'index')->name('admin');
-    });
-});
+
 
 Route::controller(IndexController::class)->group(function () {
     Route::middleware('auth')->group(function () {
@@ -36,4 +32,11 @@ Route::controller(AuthController::class)->as('auth.')->group(function () {
     Route::post('/store', 'store')->name('store');
  });
 
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::controller(AdminIndexController::class)->group(function () {
+        Route::get('/', 'index')->name('admin');
 
+        Route::get('/message', 'getMessage')->name('admin');
+
+    });
+});
