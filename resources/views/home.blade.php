@@ -21,9 +21,7 @@
 
                     <button type="submit" class="btn btn-primary mt-2 w-100">Отправить</button>
                 </form>
-                <a class="mt-2" href="{{ route('login') }}">Есть аккаунта?</a>
             </div>
         </div>
-
     </div>
 @endsection

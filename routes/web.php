@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
+
 Route::controller(IndexController::class)->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('home');
@@ -18,6 +19,13 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/login', 'login')->name('login');
     Route::get('/registration', 'registration')->name('registration');
 });
+
+Route::middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::controller(AdminIndexController::class)->group(function () {
+        Route::get('/message', 'getMessage')->name('admin');
+    });
+});
+
 
 Route::controller(AuthController::class)->as('auth.')->group(function () {
     Route::post('/auth/registration', 'registration')->name('registration');
@@ -32,11 +40,4 @@ Route::controller(AuthController::class)->as('auth.')->group(function () {
     Route::post('/store', 'store')->name('store');
  });
 
-Route::middleware(['auth', AdminMiddleware::class])->group(function () {
-    Route::controller(AdminIndexController::class)->group(function () {
-        Route::get('/', 'index')->name('admin');
 
-        Route::get('/message', 'getMessage')->name('admin');
-
-    });
-});
