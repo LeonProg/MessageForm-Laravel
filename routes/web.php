@@ -8,9 +8,6 @@ use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
-
-
-
 Route::controller(IndexController::class)->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('/', 'index')->name('home');
@@ -27,9 +24,9 @@ Route::middleware(['auth', AdminMiddleware::class])->group(function () {
 });
 
 
-Route::controller(AuthController::class)->as('auth.')->group(function () {
-    Route::post('/auth/registration', 'registration')->name('registration');
-    Route::post('/auth/login', 'login')->name('login');
+Route::controller(AuthController::class)->prefix('/auth')->as('auth.')->group(function () {
+    Route::post('/registration', 'registration')->name('registration');
+    Route::post('/login', 'login')->name('login');
 
     Route::middleware('auth')->group(function () {
         Route::get('/logout', 'logout')->name('logout');

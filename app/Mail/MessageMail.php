@@ -13,18 +13,15 @@ class MessageMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $theme;
-    public $text;
-    public $file_url;
+    public $data;
+
 
     /**
      * Create a new message instance.
      */
     public function __construct($data)
     {
-        $this->theme = $data->theme;
-        $this->text = $data->text;
-        $this->file_url = $data->file_url;
+        $this->data = $data;
     }
 
     public function build()

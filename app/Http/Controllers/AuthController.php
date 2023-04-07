@@ -24,23 +24,23 @@ class AuthController extends Controller
         return $this->home();
     }
 
-    public function login(LoginRequest $request): \Illuminate\Http\RedirectResponse
+    public function login(LoginRequest $request)
     {
         if (!Auth::attempt($request->validated())) {
-            return back()->withErrors(['invalidCredentials' => 'Не верный логин или пароль']);
+            return back()->withErrors(['invalidCredentials' => __("exceptions.invalid_credentials")]);
         }
 
         return $this->home();
     }
 
-    public function logout(): \Illuminate\Http\RedirectResponse
+    public function logout()
     {
         Auth::logout();
 
         return redirect()->route('login');
     }
 
-    private function home(): \Illuminate\Http\RedirectResponse
+    private function home()
     {
         return redirect()->route('home');
     }

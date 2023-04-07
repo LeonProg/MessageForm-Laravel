@@ -26,7 +26,7 @@ class MessageRequest extends FormRequest
         return [
             'theme' => ['required', 'min:2', 'max:50'],
             'text' => ['required', 'min:20', 'max:255'],
-            'file' => ['required', 'max:3072'],
+            'file' => ['required', new BlockType,'max:3072'],
         ];
     }
 }

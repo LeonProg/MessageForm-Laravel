@@ -14,12 +14,12 @@ class BlockType implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $extension = explode(".",$value);
+        $extension = explode(".", $value->getClientOriginalName());
         $blocked_type = ['bat', 'jar', 'exe'];
+        $extensionCount = count($extension) - 1;
 
-
-        if (in_array($extension[1], $blocked_type)) {
-            $fail('Нельзя использовать файла типа расширения .bat, .jar, .exe');
+        if (in_array($extension[$extensionCount], $blocked_type)) {
+            $fail(__('exceptions.block_type'));
         }
     }
 }

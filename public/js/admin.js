@@ -39,6 +39,8 @@ const render = async (param = "") => {
 
     tbody.innerHTML = ``;
 
+    console.log(dataMessage)
+
     dataMessage.forEach((element) => {
         let tr = `<tr>
              <th scope="row">${element.user.id}</th>
@@ -48,7 +50,7 @@ const render = async (param = "") => {
              <td>${element.user.email}</td>
              <td>${element.theme}</td>
              <td>${element.text}</td>
-             <td><a href="${element.file_path} download">Ссылка на файл</a></td>
+             <td><a href="${element.file_url}" download>Ссылка на файл</a></td>
          </tr>
         `;
 
