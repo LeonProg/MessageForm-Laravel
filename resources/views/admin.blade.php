@@ -4,16 +4,23 @@
 
 @section('content')
     <div class="container">
-        <select class="form-select sort" aria-label="Default select example">
-            <option value="ASC">Сначала старые</option>
-            <option value="DESC">Сначала новые</option>
-        </select>
-        <h5>Количество строк</h5>
-        <select class="form-select per-page" aria-label="Default select example">
-            <option value="10">10</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-        </select>
+        <div class="row">
+            <div class="col-sm">
+                <h5>Сортировка по</h5>
+                <select class="form-select sort" aria-label="Default select example">
+                    <option value="ASC">Сначала старые</option>
+                    <option value="DESC">Сначала новые</option>
+                </select>
+            </div>
+            <div class="col-sm">
+                <h5>Выбор пагинации</h5>
+                <select class="form-select per-page" aria-label="Default select example">
+                    <option value="10">10</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
         <table class="table">
             <thead>
             <tr>

@@ -26,13 +26,14 @@ class MessageController extends Controller
 
         if ($lastMessage && $lastMessage->created_at->diffInDays(now()) < 1) {
             return redirect()->back()
-                ->withErrors(["LimitExceeded" => __("exceptions.limit_exceeded")]);
+                ->withErrors(["LimitExceeded" => __("exceptions.limit_exceeded")])
+                ->withInput();
         }
 
         $message = Message::query()->create($validation);
 
         event(new MessageSent($message));
 
-        return back();
+        return redirect()->back()->with(['success' => __("exceptions.message_send")]);
     }
 }

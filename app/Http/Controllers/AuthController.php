@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         if (!Auth::attempt($request->validated())) {
-            return back()->withErrors(['invalidCredentials' => __("exceptions.invalid_credentials")]);
+            return back()->withErrors(['invalidCredentials' => __("exceptions.invalid_credentials")])->withInput();
         }
 
         return $this->home();

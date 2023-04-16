@@ -9,8 +9,7 @@
                 <form action="{{ route('auth.login') }}" method="POST">
                     @csrf
                     @include('components.alerts.error')
-
-                    @include('components.UI.input', ['field' => 'email', 'text' => 'Электронная почта', 'type' => 'email', 'placeholder' => 'name@example.com'])
+                    @include('components.UI.input', ['field' => 'email', 'text' => 'Электронная почта', 'type' => 'email', 'placeholder' => 'name@example.com', 'old' => old('email')])
                     @include('components.UI.input', ['field' => 'password', 'text' => 'Пароль', 'type' => 'password', 'placeholder' => '********'])
                     <button type="submit" class="btn btn-primary mt-2 w-100">Войти</button>
                 </form>

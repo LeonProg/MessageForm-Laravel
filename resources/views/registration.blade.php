@@ -10,8 +10,8 @@
                     @include('components.alerts.error')
 
                     @csrf
-                    @include('components.UI.input', ['field' => 'email', 'text' => 'Электронная почта', 'type' => 'email', 'placeholder' => 'name@example.com'])
-                    @include('components.UI.input', ['field' => 'name', 'text' => 'Имя', 'type' => 'text', 'placeholder' => 'Имя'])
+                    @include('components.UI.input', ['field' => 'email', 'text' => 'Электронная почта', 'type' => 'email', 'placeholder' => 'name@example.com', 'old' => old('email')])
+                    @include('components.UI.input', ['field' => 'name', 'text' => 'Имя', 'type' => 'text', 'placeholder' => 'Имя', 'old' => old('name')])
                     @include('components.UI.input', ['field' => 'password', 'text' => 'Пароль', 'type' => 'password', 'placeholder' => '********'])
                     @include('components.UI.input', ['field' => 'password_confirmation', 'text' => 'Повторите пароль', 'type' => 'password', 'placeholder' => '********'])
                     <button type="submit" class="btn btn-primary mt-2 w-100">Зарегистрироваться</button>
